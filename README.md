@@ -2,6 +2,22 @@
 
 This project focuses on creating a Virtual Library System. The goal is to build, test, and deploy a RESTful API server in Go, backed by a PostgreSQL database for persistent storage of library data. Additionally, a Go client will be developed to interact with the server. The entire system, including the server, client, and PostgreSQL database, will be deployed to a Kubernetes cluster.
 
+## Exercise Topics
+
+This exercise contains several key topics and technologies, specifically focusing on building and deploying an app with relevant tools used by OpenShift Assisted Installer team. Here's a summary of the topics this project covers:
+
+1. **RESTful API Development**: Designing and implementing a server in Go that provides a CRUD (Create, Read, Update, Delete) interface for managing library resources, demonstrating principles of RESTful service architecture.
+
+2. **Go Programming**: Utilizing Go (Golang) for server and client development, highlighting its efficiency, ease of use for concurrent programming, and suitability for building high-performance web services.
+
+3. **PostgreSQL Integration**: Leveraging PostgreSQL for persistent storage, showcasing how to integrate a relational database with a Go application to manage complex data relationships and ensure data integrity.
+
+4. **Containerization with Docker/Podman**: Employing container technology to package the server and client applications along with their dependencies, facilitating consistency across different development and deployment environments.
+
+5. **Kubernetes Orchestration**: Deploying the containerized applications to a Kubernetes cluster, covering aspects like deployments, services, ConfigMaps, Secrets, and PVCs, to manage and scale applications dynamically.
+
+6. **Continuous Integration (CI) with Prow**: Implementing a Continuous Integration pipeline for this project by integrating Prow, a Kubernetes-based CI/CD system developed by the Kubernetes project.
+
 ## Project Components
 
 ### RESTful Go Server
