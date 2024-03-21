@@ -2,8 +2,8 @@ server:
   port: "8080"
 
 db:
-  host: "localhost"
-  port: "5432"
-  user: "postgres"
-  password: "1234"
-  name: "postgres"
+  host: "${DB_HOST}"
+  port: "${DB_PORT}"
+  user: "${DB_USERNAME}"
+  password: "${DB_PASSWORD}"
+  name: "${DB_NAME}"

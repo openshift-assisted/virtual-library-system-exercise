@@ -7,29 +7,29 @@ import (
 	"virtual-library/services"
 
 	"github.com/golang/mock/gomock"
-	"github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 )
 
-var _ = ginkgo.Describe("BookService", func() {
+var _ = Describe("BookService", func() {
 	var (
 		ctrl        *gomock.Controller
 		mockRepo    *mocks.MockBookRepositoryInterface
 		bookService services.BookService
 	)
 
-	ginkgo.BeforeEach(func() {
-		ctrl = gomock.NewController(ginkgo.GinkgoT())
+	BeforeEach(func() {
+		ctrl = gomock.NewController(GinkgoT())
 		mockRepo = mocks.NewMockBookRepositoryInterface(ctrl)
 		bookService = services.NewBookService(mockRepo)
 	})
 
-	ginkgo.AfterEach(func() {
+	AfterEach(func() {
 		ctrl.Finish()
 	})
 
-	ginkgo.Describe("CreateBook", func() {
-		ginkgo.It("should create a new book", func() {
+	Describe("CreateBook", func() {
+		It("should create a new book", func() {
 			book := &models.Book{
 				Title:  "New Book",
 				Author: "New Author",
@@ -42,7 +42,7 @@ var _ = ginkgo.Describe("BookService", func() {
 			gomega.Expect(result).To(gomega.Equal(book))
 		})
 
-		ginkgo.It("should return an error if repository fails", func() {
+		It("should return an error if repository fails", func() {
 			book := &models.Book{
 				Title:  "New Book",
 				Author: "New Author",
@@ -56,8 +56,8 @@ var _ = ginkgo.Describe("BookService", func() {
 		})
 	})
 
-	ginkgo.Describe("ListBooks", func() {
-		ginkgo.It("should return a list of books", func() {
+	Describe("ListBooks", func() {
+		It("should return a list of books", func() {
 			books := []models.Book{
 				{ID: 1, Title: "Book 1", Author: "Author 1"},
 				{ID: 2, Title: "Book 2", Author: "Author 2"},
@@ -71,8 +71,8 @@ var _ = ginkgo.Describe("BookService", func() {
 		})
 	})
 
-	ginkgo.Describe("GetBook", func() {
-		ginkgo.It("should return a book by ID", func() {
+	Describe("GetBook", func() {
+		It("should return a book by ID", func() {
 			bookID := uint(1)
 			book := &models.Book{ID: bookID, Title: "Book 1", Author: "Author 1"}
 
@@ -84,8 +84,8 @@ var _ = ginkgo.Describe("BookService", func() {
 		})
 	})
 
-	ginkgo.Describe("UpdateBook", func() {
-		ginkgo.It("should update a book", func() {
+	Describe("UpdateBook", func() {
+		It("should update a book", func() {
 			bookID := uint(1)
 			book := &models.Book{ID: bookID, Title: "Updated Book", Author: "Updated Author"}
 
@@ -98,8 +98,8 @@ var _ = ginkgo.Describe("BookService", func() {
 		})
 	})
 
-	ginkgo.Describe("DeleteBook", func() {
-		ginkgo.It("should delete a book", func() {
+	Describe("DeleteBook", func() {
+		It("should delete a book", func() {
 			bookID := uint(1)
 
 			mockRepo.EXPECT().Delete(bookID).Return(nil)

@@ -7,20 +7,20 @@ import (
 	"virtual-library/repositories"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-var _ = ginkgo.Describe("BookRepository", func() {
+var _ = Describe("BookRepository", func() {
 	var (
 		db       *gorm.DB
 		mock     sqlmock.Sqlmock
 		bookRepo repositories.BookRepository
 	)
 
-	ginkgo.BeforeEach(func() {
+	BeforeEach(func() {
 		var (
 			dbMock *sql.DB
 			err    error
@@ -37,14 +37,14 @@ var _ = ginkgo.Describe("BookRepository", func() {
 		bookRepo = repositories.NewBookRepository(db)
 	})
 
-	ginkgo.AfterEach(func() {
+	AfterEach(func() {
 		db.Migrator().DropTable(&models.Book{})
 		sqlDB, _ := db.DB()
 		sqlDB.Close()
 	})
 
-	ginkgo.Describe("FindAll", func() {
-		ginkgo.It("should return all books", func() {
+	Describe("FindAll", func() {
+		It("should return all books", func() {
 			book1 := models.Book{
 				ID:          1,
 				Title:       "Book 1",
@@ -82,8 +82,8 @@ var _ = ginkgo.Describe("BookRepository", func() {
 		})
 	})
 
-	ginkgo.Describe("Create", func() {
-		ginkgo.It("should create a new book", func() {
+	Describe("Create", func() {
+		It("should create a new book", func() {
 			book := models.Book{
 				Title:       "New Book",
 				Author:      "New Author",
@@ -104,8 +104,8 @@ var _ = ginkgo.Describe("BookRepository", func() {
 		})
 	})
 
-	ginkgo.Describe("FindByID", func() {
-		ginkgo.It("should find a book by ID", func() {
+	Describe("FindByID", func() {
+		It("should find a book by ID", func() {
 			book := models.Book{
 				ID:          1,
 				Title:       "Book 1",
@@ -128,8 +128,8 @@ var _ = ginkgo.Describe("BookRepository", func() {
 		})
 	})
 
-	ginkgo.Describe("Update", func() {
-		ginkgo.It("should update a book", func() {
+	Describe("Update", func() {
+		It("should update a book", func() {
 			book := models.Book{
 				ID:          1,
 				Title:       "Book 1",
@@ -155,8 +155,8 @@ var _ = ginkgo.Describe("BookRepository", func() {
 		})
 	})
 
-	ginkgo.Describe("Delete", func() {
-		ginkgo.It("should delete a book", func() {
+	Describe("Delete", func() {
+		It("should delete a book", func() {
 			bookID := uint(1)
 
 			mock.ExpectBegin()
