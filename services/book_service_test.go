@@ -85,16 +85,25 @@ var _ = Describe("BookService", func() {
 	})
 
 	Describe("UpdateBook", func() {
-		It("should update a book", func() {
+		It("should update a book, will not ignore nil/empty fields", func() {
 			bookID := uint(1)
+			bookIDNilAuthor := uint(2)
 			book := &models.Book{ID: bookID, Title: "Updated Book", Author: "Updated Author"}
+			bookWithNilAuthor := &models.Book{ID: bookIDNilAuthor, Title: "Updated Book"}
 
 			mockRepo.EXPECT().FindByID(bookID).Return(book, nil)
 			mockRepo.EXPECT().Update(book).Return(nil)
+			mockRepo.EXPECT().FindByID(bookIDNilAuthor).Return(bookWithNilAuthor, nil)
+			mockRepo.EXPECT().Update(bookWithNilAuthor).Return(nil)
 
 			result, err := bookService.UpdateBook(book)
 			gomega.Expect(err).NotTo(gomega.HaveOccurred())
 			gomega.Expect(result).To(gomega.Equal(book))
+
+			result2, err2 := bookService.UpdateBook(bookWithNilAuthor)
+			gomega.Expect(err2).NotTo(gomega.HaveOccurred())
+			gomega.Expect(result2.Author).To(gomega.BeEmpty())
+
 		})
 	})
 
