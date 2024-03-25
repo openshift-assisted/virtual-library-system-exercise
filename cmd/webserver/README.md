@@ -1,4 +1,10 @@
 # Deploy
+
+
+From the root directory, run
 ```
-helm install library ./deployment -f ./deployment/values.yaml
+cd deployment
+helm dependency build
+
+helm install library . -f values.yaml
 ```
