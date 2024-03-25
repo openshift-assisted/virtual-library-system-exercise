@@ -1,0 +1,8 @@
+# global:
+#   postgresql:
+#     auth:
+#       username: postgres
+#       database: postgres
+#       existingSecret: library-postgresql
+#       secretKeys:
+#         adminPasswordKey: postgresql-password

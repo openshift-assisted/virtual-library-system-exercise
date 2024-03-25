@@ -22,7 +22,7 @@ func main() {
 
 	cfg, err := config.LoadConfig()
 	if err != nil {
-		logger.Fatalf("Error...")
+		logger.Fatalf("Error {}", err)
 	}
 
 	// Connect to the database

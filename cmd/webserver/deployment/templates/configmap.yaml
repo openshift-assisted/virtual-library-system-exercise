@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: library-configmap
+data:
+  db_host: "library-postgresql.default.svc.cluster.local"
+  db_port: "5432"
+  db_user: "postgres"
+  db_password: "postgres"
+  db_name: "postgres"
+

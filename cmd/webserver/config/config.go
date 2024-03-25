@@ -25,7 +25,11 @@ func LoadConfig() (*Config, error) {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
-
+    viper.BindEnv("db.host", "DB_HOST")
+    viper.BindEnv("db.port", "DB_PORT")
+    viper.BindEnv("db.user", "DB_USER")
+    viper.BindEnv("db.password", "DB_PASSWORD")
+    viper.BindEnv("db.name", "DB_NAME")
 	err := viper.ReadInConfig()
 	if err != nil {
 		return nil, err

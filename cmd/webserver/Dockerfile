@@ -25,6 +25,9 @@ WORKDIR /app
 # Copy the built binary from the builder stage
 COPY --from=builder /app/main .
 
+# Copy the config.yaml file from the builder stage
+COPY --from=builder /app/config.yaml .
+
 # Expose the port on which your application listens (if applicable)
 EXPOSE 8080
 
